@@ -263,25 +263,37 @@ article p {
 }
 .car-image { height: 190px }
 .car-image img { height: 100%; object-fit: cover; width: 100% }
-.car-title { height: 60px }
+.car-title { font-size: .9rem; height: 50px; padding: 10px }
 .car-price {
   background-color: #f6f6f6;
-  border-bottom: 4px solid #ffcc00
+  border-bottom: 3px solid #ffcc00;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 10px
 }
 .car-detail {
-  background-color: #e6e6e6;
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ddd;
   display: table;
+  height: 30px;
   width: 100%
 }
 .car-detail > span {
   display: table-cell;
+  padding: 0 5px;
   vertical-align: middle
 }
 .car-detail > span > span {
-  font-size: .9rem;
+  color: #666;
+  font-size: .7rem;
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 0;
   text-transform: uppercase
 }
-.car-detail i { font-size: 1rem }
+.car-detail i { color: #999; font-size: 1rem; position: relative; top: 2px }
 /* Modal */
 .modal {
   height: 0;
