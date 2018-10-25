@@ -161,7 +161,7 @@
                 <div class="form-group">
                   <input class="form-control" id="complemento" placeholder=" " type="text">
                   <label class="form-label" for="complemento">
-                    <span class="input-tooltip" data-title="Apartamento, bloco...">Complemento</span>
+                    <span class="helper-tooltip" data-title="Apartamento, bloco...">Complemento</span>
                     <i class="material-icons success" aria-hidden="true">&#xE86C;</i>
                     <i class="material-icons error" aria-hidden="true">&#xE000;</i>
                   </label>
@@ -225,10 +225,10 @@
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                   <input class="form-control-check" id="chk-1"name="checkbox" required type="checkbox">
-                  <label for="chk-1">Aceito os <a aria-label="termos" data-toggle="modal" href="#">termos de <span class="bold">privacidade</span></a></label>
-                  <div aria-labelledby="termos" class="modal" id="termos" role="dialog">
+                  <label for="chk-1">Aceito os <a aria-label="termos" class="helper-tooltip" data-title="Ler termos de privacidade" data-toggle="modal" href="#">termos de <span class="bold">privacidade</span></a></label>
+                  <div aria-label="termos" data-toggle="modal" aria-labelledby="termos" class="modal" id="termos" role="dialog">
                     <div class="modal-dialog" role="document">
-                      <div class="modal-content">
+                      <div data-toggle="modal" class="modal-content">
                         <a aria-label="termos" class="close-button" data-toggle="modal" href="#" role="button" title="Fechar">
                           <i class="material-icons" aria-hidden="true">&#xE5C9;</i>
                         </a>
@@ -273,7 +273,7 @@
                         </article>
                       </div> <!-- /.modal-content -->
                     </div> <!-- /.modal-dialog -->
-                    <span aria-label="termos" class="overlay" data-toggle="modal"></span>
+                    <!-- <span></span> -->
                   </div> <!-- /.modal -->
                 </div> <!-- /.form-group -->
               </div>
