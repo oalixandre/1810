@@ -92,16 +92,25 @@ for(i=0; i < focusinput.length; i++){
     }
   }
 }
-
+/* Modal */
 function triggerModal(m){
   o_modal = m
-  toggleModal()
+  setTimeout('toggleModal()', 300)
+  window.resize = function(){
+    resizeModal()
+  }
 }
 function toggleModal(){
   o_modal=id(o_modal)
   o_body=tag(document, 'body')[0]
   toggleClass(o_modal, 'opened');
-  toggleClass(o_body, 'no-scroll')
+  toggleClass(o_body, 'no-scroll');
+}
+function resizeModal(){
+  o_modal=id(o_modal)
+  overlay=o_modal.getElementsByClassName('overlay')[0];
+  modalContent = o_modal.getElementsByClassName('modal-dialog')[0].offsetHeight.toString() + "px";
+  overlay.style.height = modalContent;
 }
 function toggleClass(o, c) { o.classList.contains(c)? removeClass(o, c) : addClass(o, c) }
 function addClass(o, c) { o.classList.add(c) }

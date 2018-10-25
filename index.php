@@ -2,10 +2,15 @@
 <html lang="pt-br" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!--[if lt IE 9]>
+  <script src="assets/js/html5shiv.min.js"></script>
+<![endif]-->
+<meta name="viewport" content="width=device-width, user-scalable=no" />
   <link href="assets/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title></title>
+  <title>1810</title>
 </head>
 <body>
   <main>
@@ -18,19 +23,19 @@
                 <img src="assets/img/default.jpg" alt="Foto de um Honda Fit azul" />
               </span> <!-- /.car-image -->
               <span class="car-title">Lorem ipsum dolor sit amet</span>
-              <span class="car-price">R$ 00.000,00</span>
+              <span class="car-price"><span class="sup">R$</span> 00.000,00</span>
               <span class="car-detail">
                 <span class="car-detail-color">
-                  <i class="material-icons" aria-hidden="true">&#xe3b7;</i>
-                  <span>Color</span>
-                </span>
-                <span class="car-detail-transmission">
-                  <i class="material-icons" aria-hidden="true">&#xe8d6;</i>
-                  <span>Transmission</span>
+                  <i class="material-icons" aria-hidden="true">&#xe916;</i>
+                  <span title="ano">2000/2000</span>
                 </span>
                 <span class="car-detail-fuel">
                   <i class="material-icons" aria-hidden="true">&#xe546;</i>
                   <span>Fuel</span>
+                </span>
+                <span class="car-detail-transmission">
+                  <i class="material-icons" aria-hidden="true">&#xe8d6;</i>
+                  <span>Transmission</span>
                 </span>
               </span> <!-- /.car-detail -->
             </a> <!-- /.card-list-car -->
