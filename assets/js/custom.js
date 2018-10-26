@@ -1,5 +1,6 @@
 /* Helpful*/
-function hasClass(o, c) {
+function hasClass(o, c)
+{
   if (o.classList.contains(c)) {
     return true
   } else {
@@ -7,41 +8,49 @@ function hasClass(o, c) {
   }
 }
 
-function toggleClass(o, c) {
+function toggleClass(o, c)
+{
   hasClass(o, c) ? removeClass(o, c) : addClass(o, c)
 }
 
-function addClass(o, c) {
+function addClass(o, c)
+{
   o.classList.add(c)
 }
 
-function removeClass(o, c) {
+function removeClass(o, c)
+{
   o.classList.remove(c)
 }
 /* Máscaras ER */
-function mascara(o, f) {
+function mascara(o, f)
+{
   v_obj = o
   v_fun = f
   setTimeout("execmascara()", 1)
 }
 
-function execmascara() {
+function execmascara()
+{
   v_obj.value = v_fun(v_obj.value)
 }
 
-function mnum(v) {
+function mnum(v)
+{
   v = v.replace(/\D/g, "");
   return v;
 }
 
-function mtel(v) {
+function mtel(v)
+{
   v = v.replace(/\D/g, "");
   v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
   v = v.replace(/(\d)(\d{4})$/, "$1-$2");
   return v;
 }
 
-function mcpf(v) {
+function mcpf(v)
+{
   v = v.replace(/\D/g, "");
   v = v.replace(/(\d{3})(\d)/, "$1.$2");
   v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -49,7 +58,8 @@ function mcpf(v) {
   return v;
 }
 
-function mcnpj(v) {
+function mcnpj(v)
+{
   v = v.replace(/\D/g, "");
   v = v.replace(/^(\d{2})(\d)/, "$1.$2");
   v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
@@ -58,7 +68,8 @@ function mcnpj(v) {
   return v;
 }
 
-function mcep(v) {
+function mcep(v)
+{
   v = v.replace(/\D/g, "");
   v = v.replace(/^(\d{5})(\d)/, "$1-$2");
   return v;
@@ -75,51 +86,68 @@ function stopDefAction(event)
   event.preventDefault();
 }
 
-function id(o) {
+function id(o)
+{
   return document.getElementById(o);
 }
 
-function tag(id, o) {
+function tag(id, o)
+{
   return id.getElementsByTagName(o);
 }
-window.onload = function() {
-  id('tel').onkeyup = function() {
+window.onload = function()
+{
+  id('tel').onkeyup = function()
+  {
     mascara(this, mtel);
   }
-  id('cpf').onkeyup = function() {
+  id('cpf').onkeyup = function()
+  {
     mascara(this, mcpf);
   }
-  id('cep').onkeyup = function() {
+  id('cep').onkeyup = function()
+  {
     mascara(this, mcep);
   }
-  id('numero').onkeyup = function() {
+  id('numero').onkeyup = function()
+  {
     mascara(this, mnum);
   }
 }
 
-function inputs(input, select, textarea) {
+function inputs(input, select, textarea)
+{
   o_input = input
   o_select = select
   o_textarea = textarea
   disableInputs()
 }
 
-function disableInputs() {
-  for (i = 0; i < o_select.length; i++) {
+function disableInputs()
+{
+  for (i = 0; i < o_select.length; i++)
+  {
     o_select[i].disabled = true
   }
-  for (i = 0; i < o_textarea.length; i++) {
+  for (i = 0; i < o_textarea.length; i++)
+  {
     o_textarea[i].disabled = true
   }
-  for (i = 0; i < o_input.length; i++) {
-    if (o_input[i].type == 'radio' || o_input[i].type == 'checkbox') {
+  for (i = 0; i < o_input.length; i++)
+  {
+    if (o_input[i].type == 'radio' || o_input[i].type == 'checkbox')
+    {
       o_input[i].disabled = true;
-    } else {
+    }
+    else
+    {
       o_input[i].readOnly = true;
     }
   }
 }
-id('form').onsubmit = function() {
+
+id('form').onsubmit = function()
+{
   var input = tag(this, 'input'),
   select = tag(this, 'select'),
   textarea = tag(this, 'textarea');
@@ -127,27 +155,35 @@ id('form').onsubmit = function() {
   return false
 }
 focusinput = document.querySelectorAll('input, textarea, select');
-for (i = 0; i < focusinput.length; i++) {
-  focusinput[i].onfocus = function() {
+for (i = 0; i < focusinput.length; i++)
+{
+  focusinput[i].onfocus = function()
+  {
     this.nextElementSibling.classList.add('focusIn')
   }
-  focusinput[i].onblur = function() {
+  focusinput[i].onblur = function()
+  {
     var pattern = this.getAttribute('pattern'),
     pattern = pattern ? new RegExp(pattern) : new RegExp('[^\s]', 'i');
-    if (!pattern.test(this.value)) {
+    if (!pattern.test(this.value))
+    {
       this.nextElementSibling.classList.remove('focusIn')
     }
   }
 }
 
-Object.defineProperty( Element.prototype, 'documentOffsetTop', {
-  get: function () {
+Object.defineProperty( Element.prototype, 'documentOffsetTop',
+{
+  get: function()
+  {
     return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop : 0 );
   }
 })
 
-Object.defineProperty( Element.prototype, 'documentOffsetLeft', {
-  get: function () {
+Object.defineProperty( Element.prototype, 'documentOffsetLeft',
+{
+  get: function()
+  {
     return this.offsetLeft + ( this.offsetParent ? this.offsetParent.documentOffsetLeft : 0 );
   }
 })
