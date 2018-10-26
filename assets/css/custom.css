@@ -361,7 +361,7 @@ article p {
   width: 600px;
 }
 @media (max-width: 610px) {
-  .modal-dialog {
+  .modal.opened .modal-dialog {
     left: 5%;
     margin-left: 0;
     margin-bottom: 25px;

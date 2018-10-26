@@ -64,6 +64,17 @@ function mcep(v) {
   return v;
 }
 
+function $(el)
+{
+  selector = document.querySelectorAll(el);
+  return selector
+}
+
+function stopDefAction(event)
+{
+  event.preventDefault();
+}
+
 function id(o) {
   return document.getElementById(o);
 }
@@ -128,6 +139,37 @@ for (i = 0; i < focusinput.length; i++) {
     }
   }
 }
+
+Object.defineProperty( Element.prototype, 'documentOffsetTop', {
+  get: function () {
+    return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop : 0 );
+  }
+})
+
+Object.defineProperty( Element.prototype, 'documentOffsetLeft', {
+  get: function () {
+    return this.offsetLeft + ( this.offsetParent ? this.offsetParent.documentOffsetLeft : 0 );
+  }
+})
+
+function toScroll(el)
+{
+  el.addEventListener("click", stopDefAction, false);
+  el.addEventListener("click", function(){ scrollPage(el) });
+}
+
+function scrollPage(el)
+{
+  t_g = $(el.getAttribute('href'))[0];
+  s_x = t_g.documentOffsetLeft? t_g.documentOffsetLeft : 0;
+  s_y = t_g.documentOffsetTop? t_g.documentOffsetTop: 0;
+  window.scroll({
+    left: s_x,
+    top: s_y,
+    behavior: 'smooth'
+  })
+}
+
 /* Modal */
 function init_Modal(m) {
   o_modal = m
