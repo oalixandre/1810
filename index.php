@@ -16,14 +16,36 @@
   <main>
     <section class="mtb-15">
       <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="slider" id="slide">
+              <div class="slider-container">
+              <div class="item">1</div> <!-- /.item -->
+              <div class="item">2</div> <!-- /.item -->
+              <div class="item">3</div> <!-- /.item -->
+              <div class="item">4</div> <!-- /.item -->
+              <div class="item">5</div> <!-- /.item -->
+              <div class="item">6</div> <!-- /.item -->
+              <div class="item">7</div> <!-- /.item -->
+              <div class="item">8</div> <!-- /.item -->
+              <div class="item">9</div> <!-- /.item -->
+            </div> <!-- /.slider-container -->
+          </div> <!-- /.slider -->
+          </div>
+        </div> <!-- /.row -->
         <div class="row" role="grid">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" role="gridcell">
             <a class="card-list-car" href="">
-              <span class="car-image">
+              <span class="car-image" role="figure">
                 <img src="assets/img/default.jpg" alt="Foto de um Honda Fit azul" />
               </span> <!-- /.car-image -->
-              <span class="car-title">Lorem ipsum dolor sit amet</span>
-              <span class="car-price"><span class="sup">R$</span> 00.000,00</span>
+              <span class="car-price">
+                <span class="pull-right"><span class="sup">R$</span> 00.000,00</span>
+              </span>
+              <span class="car-title">
+                <span>Lorem ipsum dolor sit amet</span>
+                <span class="button" role="button">Ver Detalhes</span>
+              </span>
               <span class="car-detail">
                 <span class="car-detail-color">
                   <i class="material-icons" aria-hidden="true">&#xe916;</i>
@@ -31,7 +53,7 @@
                 </span>
                 <span class="car-detail-fuel">
                   <i class="material-icons" aria-hidden="true">&#xe546;</i>
-                  <span>Fuel</span>
+                  <span>Gasolina</span>
                 </span>
                 <span class="car-detail-transmission">
                   <i class="material-icons" aria-hidden="true">&#xe8d6;</i>

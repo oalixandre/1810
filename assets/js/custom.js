@@ -172,7 +172,7 @@ for (i = 0; i < focusinput.length; i++)
   }
 }
 
-Object.defineProperty( Element.prototype, 'documentOffsetTop',
+Object.defineProperty(Element.prototype, 'documentOffsetTop',
 {
   get: function()
   {
@@ -180,7 +180,7 @@ Object.defineProperty( Element.prototype, 'documentOffsetTop',
   }
 })
 
-Object.defineProperty( Element.prototype, 'documentOffsetLeft',
+Object.defineProperty(Element.prototype, 'documentOffsetLeft',
 {
   get: function()
   {
@@ -188,6 +188,17 @@ Object.defineProperty( Element.prototype, 'documentOffsetLeft',
   }
 })
 
+Object.defineProperty(Element.prototype, 'isVisible',
+{
+  get: function()
+  {
+    return this.is(function(e){
+        return e.offsetWidth > 0 || e.offsetHeight > 0;
+    })
+  }
+})
+
+/* Scroll */
 function toScroll(el)
 {
   el.addEventListener("click", stopDefAction, false);
@@ -207,18 +218,22 @@ function scrollPage(el)
 }
 
 /* Modal */
-function init_Modal(m) {
-  o_modal = m
+function init_Modal(modal)
+{
+  o_modal = modal
   setTimeout('toggle_Modal()', 300)
 }
 
-function toggle_Modal() {
+function toggle_Modal()
+{
   o_modal = id(o_modal)
   o_body = tag(document, 'body')[0]
   toggleClass(o_modal, 'opened');
   toggleClass(o_body, 'no-scroll');
-  addEventListener('keyup', function(e){
-    if (e.keyCode == 27) {
+  addEventListener('keyup', function(e)
+  {
+    if (e.keyCode == 27)
+    {
       removeClass(o_modal, 'opened');
       removeClass(o_body, 'no-scroll');
     }
@@ -226,13 +241,69 @@ function toggle_Modal() {
 }
 
 var trigger_Modal = document.querySelectorAll('[data-toggle="modal"]');
-for (i = 0; i < trigger_Modal.length; i++) {
-  trigger_Modal[i].onclick = function(e) {
-    if (hasClass(this, 'modal-content')) {
+for (i = 0; i < trigger_Modal.length; i++)
+{
+  trigger_Modal[i].onclick = function(e)
+  {
+    if (hasClass(this, 'modal-content'))
+    {
       e.stopPropagation()
-    } else {
+    }
+    else
+    {
       init_Modal(this.getAttribute('aria-label'));
     }
     return false
   }
 }
+/* Slide */
+var slider = slider || {};
+
+var slider = function(oid, ospeed, odir)
+{
+  this.id = oid;
+  this.slide = id(this.id);
+  this.speed = ospeed;
+  this.dir = odir;
+  this.initSlide = function(e) {
+    width = 0;
+    container = this.slide.children[0];
+    items = container.children;
+    for(i = 0; i < items.length; i++)
+    {
+      width += items[i].offsetWidth;
+    }
+    container.style.width = width.toString() + "px";
+    container.insertAdjacentHTML("afterend", "<span class=\"slide-button-left\">");
+    container.insertAdjacentHTML("afterend", "<span class=\"slide-button-right\">");
+    addClass(this.slide, 'loaded');
+  }
+}
+
+slider.prototype.playSlide = function()
+{
+  setInterval(slide, this.speed);
+}
+slider.prototype.pauseSlide = function()
+{
+  clearInterval(slide());
+}
+
+function slide(d)
+{
+  var d = d? d : -1;
+  var tpos = { tposX: 0, tposY: 0, tposZ: 0 };
+  var actualItem = container.querySelectorAll('.item.active')[0]? container.querySelectorAll('.item.active')[0] : container.lastElementChild;
+  var nextItem = actualItem.isEqualNode(container.lastElementChild)? container.firstElementChild : actualItem.nextElementSibling;
+  var prevtItem = actualItem.isEqualNode(container.firstElementChild)? container.lastElementChild : actualItem.previousElementSibling;
+  tpos["tposX"] = (nextItem.offsetLeft * d).toString() + "px";
+  tpos["tposY"] = (nextItem.offsetTop * d).toString() + "px";
+  addClass(nextItem, 'active');
+  removeClass(actualItem, 'active');
+  container.style.transform = 'translate3d('+tpos["tposX"]+', '+tpos["tposY"]+', '+tpos["tposZ"]+')';
+  container.style.transition = 'transform .35s ease-in-out';
+}
+
+slide_home = new slider('slide', 1000, -1);
+slide_home.initSlide();
+slide_home.playSlide();
