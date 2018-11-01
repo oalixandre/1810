@@ -20,15 +20,24 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="slider" id="slide">
               <div class="slider-container">
-              <div class="item">1</div> <!-- /.item -->
-              <div class="item">2</div> <!-- /.item -->
-              <div class="item">3</div> <!-- /.item -->
-              <div class="item">4</div> <!-- /.item -->
-              <div class="item">5</div> <!-- /.item -->
-              <div class="item">6</div> <!-- /.item -->
-              <div class="item">7</div> <!-- /.item -->
-              <div class="item">8</div> <!-- /.item -->
-              <div class="item">9</div> <!-- /.item -->
+              <div class="item">
+                <img src="https://via.placeholder.com/1400x400">
+              </div> <!-- /.item -->
+              <div class="item">
+                <img src="https://via.placeholder.com/1400x400">
+              </div> <!-- /.item -->
+              <div class="item">
+                <img src="https://via.placeholder.com/1400x400">
+              </div> <!-- /.item -->
+              <div class="item">
+                <img src="https://via.placeholder.com/1400x400">
+              </div> <!-- /.item -->
+              <div class="item">
+                <img src="https://via.placeholder.com/1400x400">
+              </div> <!-- /.item -->
+              <div class="item">
+                <img src="https://via.placeholder.com/1400x400">
+              </div> <!-- /.item -->
             </div> <!-- /.slider-container -->
           </div> <!-- /.slider -->
           </div>

@@ -1,4 +1,8 @@
 @charset "UTF-8";
+:root {
+  --default-bg-color: #ffcc00;
+  --default-color: #303030;
+}
 * { box-sizing: border-box }
 body { color: #505050 }
 body.no-scroll {
@@ -8,7 +12,7 @@ body.no-scroll {
 /* a { color: #1a0dab } */
 a { color: inherit }
 ::selection {
-  background-color: #ffcc00;
+  background-color: var(--default-bg-color);
   color: #000;
   text-shadow: 0 0 0 transparent
 }
@@ -17,8 +21,9 @@ a { color: inherit }
 .sup { font-size: 55%; vertical-align: top }
 /* back-ground and colors */
 .default-bg-color {
-  background-color: #ffcc00;
-  border-color: #ffcc00
+  background-color: var(--default-bg-color);
+  border-color: var(--default-bg-color);
+  color: var(--default-color)
 }
 /* Forms */
 fieldset {
@@ -57,7 +62,7 @@ legend {
 }
 .form-group .aux-effect { position: absolute; left: 0; top: 100%; width: 100%}
 .form-group .aux-effect:after {
-  background-color: #ffcc00;
+  background-color: var(--default-bg-color);
   content: '';
   height: 4px;
   left: 0;
@@ -181,17 +186,17 @@ legend {
 .form-control-radio + label:before,
 .form-control-radio + label:after  { border-radius: 100px }
 .form-control-check:checked + label:before,
-.form-control-radio:checked + label:before { border-color: #ffcc00; box-shadow: 0 0 0 transparent }
+.form-control-radio:checked + label:before { border-color: var(--default-bg-color); box-shadow: 0 0 0 transparent }
 .form-control-check + label:after,
 .form-control-radio + label:after {
-  background-color: #ffcc00;
+  background-color: var(--default-bg-color);
   content: '';
   display: inline-block;
   height: 19px;
   left: 3px;
   opacity: 0;
   position: absolute;
-  top: 2px;
+  top: 1px;
   transform: scale(2);
   transition: all .65s ease-in-out;
   width: 19px;
@@ -209,6 +214,7 @@ legend {
   display: inline-block;
   font-weight: bold;
   text-transform: uppercase;
+  touch-action: manipulation
 }
 .button.small { font-size: .85rem; padding: .6rem 1.2rem }
 .button.medium { font-size: .9rem; padding: .8rem 2rem }
@@ -320,7 +326,8 @@ article p {
 }
 .car-title > span.button:hover { box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, .05) }
 .car-price {
-  border-bottom: 3px solid #ffcc00;
+  border-bottom: 3px solid var(--default-bg-color);
+  color: var(--default-color);
   font-size: 1.16rem;
   font-weight: bold;
   letter-spacing: -1px;
@@ -331,7 +338,7 @@ article p {
 }
 .car-price > span { position: relative; z-index: 1 }
 .car-price:before {
-  background-color: #ffcc00;
+  background-color: var(--default-bg-color);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1);
   content: '';
   height: 150%;
@@ -344,9 +351,8 @@ article p {
 }
 
 .car-detail {
-  background-color: #f6f6f6;
+  background-color: #f9f9f9;
   border-bottom: 2px solid #ddd;
-  border-top: 1px solid #eee;
   display: table;
   height: 35px;
   width: 100%
@@ -402,7 +408,7 @@ article p {
   touch-action: manipulation;
   width: 28px
 }
-.modal .close-button:hover { color: #ffcc00 }
+.modal .close-button:hover { color: var(--default-bg-color) }
 .modal .close-button i {
   font-size: 2rem;
   line-height: 28px
@@ -442,10 +448,29 @@ article p {
 }
 
 .slider {
+  margin: 0 0 15px;
   overflow: hidden;
   position: relative;
   visibility: hidden;
   width: 100%
 }
 .slider.loaded { visibility: visible }
-.slider .item {  background-color: #eee; float: left; width: 1140px  }
+.slider .item {  background-color: #eee; float: left  }
+
+.slider [class^="slide-button"] {
+  background-color: rgba(0, 0, 0, .4);
+  color: #fff;
+  cursor: pointer;
+  height: 42px;
+  line-height: 42px;
+  margin-top: -21px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  touch-action: manipulation;
+  user-select: none;
+  width: 42px
+}
+.slider .slide-button-left { left: 2.5% }
+.slider .slide-button-right { right: 2.5% }
+.slider .item img { height: 100%; object-fit: cover; width: 100% }

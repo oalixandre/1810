@@ -1,27 +1,45 @@
-/* Helpful*/
-function hasClass(o, c)
+Element.prototype.hasClass = function(classe) {
+  return this.classList.contains(classe)
+}
+
+Element.prototype.toggleClass = function(classe) {
+  this.hasClass(classe) ? this.removeClass(classe) : this.addClass(classe)
+}
+
+Element.prototype.addClass = function(classe) {
+  this.classList.add(classe)
+}
+
+Element.prototype.removeClass = function(classe) {
+  this.classList.remove(classe)
+}
+
+Object.defineProperty(Element.prototype, 'documentOffsetTop',
 {
-  if (o.classList.contains(c)) {
-    return true
-  } else {
-    return false
+  get: function()
+  {
+    return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop : 0 );
   }
-}
+})
 
-function toggleClass(o, c)
+Object.defineProperty(Element.prototype, 'documentOffsetLeft',
 {
-  hasClass(o, c) ? removeClass(o, c) : addClass(o, c)
-}
+  get: function()
+  {
+    return this.offsetLeft + ( this.offsetParent ? this.offsetParent.documentOffsetLeft : 0 );
+  }
+})
 
-function addClass(o, c)
+Object.defineProperty(Element.prototype, 'isVisible',
 {
-  o.classList.add(c)
-}
+  get: function()
+  {
+    return this.is(function(e){
+        return e.offsetWidth > 0 || e.offsetHeight > 0;
+    })
+  }
+})
 
-function removeClass(o, c)
-{
-  o.classList.remove(c)
-}
 /* Máscaras ER */
 function mascara(o, f)
 {
@@ -159,7 +177,7 @@ for (i = 0; i < focusinput.length; i++)
 {
   focusinput[i].onfocus = function()
   {
-    this.nextElementSibling.classList.add('focusIn')
+    this.nextElementSibling.addClass('focusIn')
   }
   focusinput[i].onblur = function()
   {
@@ -167,37 +185,10 @@ for (i = 0; i < focusinput.length; i++)
     pattern = pattern ? new RegExp(pattern) : new RegExp('[^\s]', 'i');
     if (!pattern.test(this.value))
     {
-      this.nextElementSibling.classList.remove('focusIn')
+      this.nextElementSibling.removeClass('focusIn')
     }
   }
 }
-
-Object.defineProperty(Element.prototype, 'documentOffsetTop',
-{
-  get: function()
-  {
-    return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop : 0 );
-  }
-})
-
-Object.defineProperty(Element.prototype, 'documentOffsetLeft',
-{
-  get: function()
-  {
-    return this.offsetLeft + ( this.offsetParent ? this.offsetParent.documentOffsetLeft : 0 );
-  }
-})
-
-Object.defineProperty(Element.prototype, 'isVisible',
-{
-  get: function()
-  {
-    return this.is(function(e){
-        return e.offsetWidth > 0 || e.offsetHeight > 0;
-    })
-  }
-})
-
 /* Scroll */
 function toScroll(el)
 {
@@ -228,14 +219,14 @@ function toggle_Modal()
 {
   o_modal = id(o_modal)
   o_body = tag(document, 'body')[0]
-  toggleClass(o_modal, 'opened');
-  toggleClass(o_body, 'no-scroll');
+  o_modal.toggleClass('opened');
+  o_body.toggleClass('no-scroll');
   addEventListener('keyup', function(e)
   {
     if (e.keyCode == 27)
     {
-      removeClass(o_modal, 'opened');
-      removeClass(o_body, 'no-scroll');
+      o_modal.removeClass('opened');
+      o_body.removeClass('no-scroll');
     }
   })
 }
@@ -245,7 +236,7 @@ for (i = 0; i < trigger_Modal.length; i++)
 {
   trigger_Modal[i].onclick = function(e)
   {
-    if (hasClass(this, 'modal-content'))
+    if (this.hasClass('modal-content'))
     {
       e.stopPropagation()
     }
@@ -259,51 +250,53 @@ for (i = 0; i < trigger_Modal.length; i++)
 /* Slide */
 var slider = slider || {};
 
-var slider = function(oid, ospeed, odir)
+var slider = function(oid, ospeed)
 {
   this.id = oid;
   this.slide = id(this.id);
   this.speed = ospeed;
-  this.dir = odir;
+
   this.initSlide = function(e) {
-    width = 0;
+    var width = this.slide.offsetWidth;
     container = this.slide.children[0];
     items = container.children;
     for(i = 0; i < items.length; i++)
     {
-      width += items[i].offsetWidth;
+      items[i].style.width = width.toString() + "px";
     }
-    container.style.width = width.toString() + "px";
-    container.insertAdjacentHTML("afterend", "<span class=\"slide-button-left\">");
-    container.insertAdjacentHTML("afterend", "<span class=\"slide-button-right\">");
-    addClass(this.slide, 'loaded');
+    container.insertAdjacentHTML("afterend", "<span class=\"slide-button-left material-icons\" aria-hidden=\"true\" role=\"button\">&#xe408</span>");
+    container.insertAdjacentHTML("afterend", "<span class=\"slide-button-right material-icons\" aria-hidden=\"true\" role=\"button\">&#xe409</span>");
+    container.style.width = (width * items.length).toString() + "px";
+    this.slide.addClass('loaded');
   }
 }
 
 slider.prototype.playSlide = function()
 {
-  setInterval(slide, this.speed);
+  slide = setInterval(slide, this.speed);
 }
 slider.prototype.pauseSlide = function()
 {
-  clearInterval(slide());
+  clearInterval(slide);
 }
 
-function slide(d)
+function slide(nextItem)
 {
-  var d = d? d : -1;
   var tpos = { tposX: 0, tposY: 0, tposZ: 0 };
-  var actualItem = container.querySelectorAll('.item.active')[0]? container.querySelectorAll('.item.active')[0] : container.lastElementChild;
-  var nextItem = actualItem.isEqualNode(container.lastElementChild)? container.firstElementChild : actualItem.nextElementSibling;
-  var prevtItem = actualItem.isEqualNode(container.firstElementChild)? container.lastElementChild : actualItem.previousElementSibling;
-  tpos["tposX"] = (nextItem.offsetLeft * d).toString() + "px";
-  tpos["tposY"] = (nextItem.offsetTop * d).toString() + "px";
-  addClass(nextItem, 'active');
-  removeClass(actualItem, 'active');
+  var actualItem = actualItem? actualItem : container.querySelectorAll('.item.active')[0]? container.querySelectorAll('.item.active')[0] : container.lastElementChild;
+  var nextItem = nextItem? nextItem : actualItem.isEqualNode(container.lastElementChild)? container.firstElementChild : actualItem.nextElementSibling;
+
+  tpos["tposX"] = (nextItem.offsetLeft * -1).toString() + "px";
+  tpos["tposY"] = (nextItem.offsetTop * -1).toString() + "px";
+
+  nextItem.addClass('active'); nextItem = '';
+  actualItem.removeClass('active');
   container.style.transform = 'translate3d('+tpos["tposX"]+', '+tpos["tposY"]+', '+tpos["tposZ"]+')';
   container.style.transition = 'transform .35s ease-in-out';
+
+  return nextItem;
 }
 
-slide_home = new slider('slide', 1000, -1);
+slide_home = new slider('slide', 1000);
 slide_home.initSlide();
 slide_home.playSlide();
