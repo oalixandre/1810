@@ -283,7 +283,7 @@ slider.prototype.pauseSlide = function()
 function slide(nextItem)
 {
   var tpos = { tposX: 0, tposY: 0, tposZ: 0 };
-  var actualItem = actualItem? actualItem : container.querySelectorAll('.item.active')[0]? container.querySelectorAll('.item.active')[0] : container.lastElementChild;
+  var actualItem = container.querySelectorAll('.item.active')[0]? container.querySelectorAll('.item.active')[0] : container.lastElementChild;
   var nextItem = nextItem? nextItem : actualItem.isEqualNode(container.lastElementChild)? container.firstElementChild : actualItem.nextElementSibling;
 
   tpos["tposX"] = (nextItem.offsetLeft * -1).toString() + "px";
