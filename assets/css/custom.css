@@ -87,9 +87,11 @@ legend {
   transition: color .35s ease-in-out
 }
 .form-group .form-control {
-  border: 1px solid transparent;
-  border-bottom-color: #ddd;
-  border-bottom-width: 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, .03);
+  /* border-bottom-color: #ddd;
+  border-bottom-width: 4px; */
   color: #505050;
   font-size: .8rem;
   padding: .7rem .6rem;
@@ -101,12 +103,12 @@ legend {
   border-top-color: #ddd;
   border-top-width: 1px;
 }
-.form-group .form-control:not(:read-only),
+/* .form-group .form-control:not(:read-only),
 .form-group select.form-control {
   background-color: #fbfbfb;
   border-top-color: #ddd;
   border-top-width: 1px;
-}
+} */
 .form-group .form-control:focus:not(:placeholder-shown):not(:valid) { border-color: #faebcc }
 .form-group .form-control:valid:not(:placeholder-shown) + .form-label i.success { color: #468847 }
 .form-group .form-control:invalid:not(:placeholder-shown):not(select) + .form-label i.error { color: #a94442 }
@@ -455,7 +457,11 @@ article p {
   width: 100%
 }
 .slider.loaded { visibility: visible }
-.slider .item {  background-color: #eee; float: left  }
+.slider .item {
+  background-color: #eee;
+  float: left;
+  transition: all 2s ease-in-out
+}
 
 .slider [class^="slide-button"] {
   background-color: rgba(0, 0, 0, .4);
@@ -474,3 +480,13 @@ article p {
 .slider .slide-button-left { left: 2.5% }
 .slider .slide-button-right { right: 2.5% }
 .slider .item img { height: 100%; object-fit: cover; width: 100% }
+
+
+@keyframes fadeIn {
+  0% { opacity: 0 } 100% { opacity: 1 }
+}
+
+.lazyImage.loaded {
+  animation: fadeIn 1s linear 0s forwards;
+  opacity: 0
+}

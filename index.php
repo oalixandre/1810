@@ -7,13 +7,15 @@
   <script src="assets/js/html5shiv.min.js"></script>
 <![endif]-->
 <meta name="viewport" content="width=device-width, user-scalable=no" />
-  <link href="assets/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
-  <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="assets/css/bootstrap-grid.min.css" media="nope!" onload="this.media='all'" rel="stylesheet" type="text/css" />
+  <link href="assets/css/custom.css" media="nope!" onload="this.media='all'" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" media="nope!" onload="this.media='all'" rel="stylesheet">
   <title>1810</title>
 </head>
 <body>
   <main>
+    <div id="loader" style="background: rgba(255, 255, 255, .98) url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWw6c3BhY2U9InByZXNlcnZlIj48Zz48cGF0aCBkPSJNNzUuNCAxMjYuNjNhMTEuNDMgMTEuNDMgMCAwIDEtMi4xLTIyLjY1IDQwLjkgNDAuOSAwIDAgMCAzMC41LTMwLjYgMTEuNCAxMS40IDAgMSAxIDIyLjI3IDQuODdoLjAyYTYzLjc3IDYzLjc3IDAgMCAxLTQ3LjggNDguMDV2LS4wMmExMS4zOCAxMS4zOCAwIDAgMS0yLjkzLjM3eiIgZmlsbD0iIzFiMzA1ZCIgZmlsbC1vcGFjaXR5PSIxIi8+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNjQgNjQiIHRvPSIzNjAgNjQgNjQiIGR1cj0iMTgwMG1zIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSI+PC9hbmltYXRlVHJhbnNmb3JtPjwvZz48L3N2Zz4=') no-repeat center center;content: '';height: 100%;left: 0px;opacity: 1;position:fixed;top: 0px;transition:all .35s ease;width: 100%;z-index: 999">
+    </div>
     <section class="mtb-15">
       <div class="container">
         <div class="row">
@@ -46,7 +48,7 @@
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" role="gridcell">
             <a class="card-list-car" href="">
               <span class="car-image" role="figure">
-                <img src="assets/img/default.jpg" alt="Foto de um Honda Fit azul" />
+                <img class="lazyImage" srcs="assets/img/default.jpg" alt="Foto de um Honda Fit azul" />
               </span> <!-- /.car-image -->
               <span class="car-price">
                 <span class="pull-right"><span class="sup">R$</span> 00.000,00</span>
@@ -331,6 +333,7 @@
     </section>
   </main>
   <script async defer src="assets/js/custom.js" type="text/javascript"></script>
+  <script async defer src="assets/js/home.js" type="text/javascript"></script>
   <noscript>O seu navegador atualmente não executa scripts. Os scripts são necessários para uma melhor experiência de navegação. Habilite em seu navegador o uso de scripts.</noscript>
 </body>
 </html>
