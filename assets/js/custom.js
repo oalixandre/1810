@@ -55,14 +55,6 @@ Object.defineProperty(Element.prototype, 'documentOffsetLeft',
     return this.offsetLeft + ( this.offsetParent ? this.offsetParent.documentOffsetLeft : 0 );
   }
 })
-
-// Object.defineProperty(Element.prototype, 'isVisible',
-// {
-//   get: function()
-//   {
-//     return this.offsetWidth > 0 || this.offsetHeight > 0;
-//   }
-// })
 /* Máscaras ER */
 function mascara(o, f)
 {
@@ -359,6 +351,7 @@ function slide(obj)
   current.removeClass('active');
   next.addClass('active');
 }
+
 /* Lazy Load */
 var lazyImage = lazyImage || {};
 
