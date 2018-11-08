@@ -128,25 +128,6 @@ function tag(id, o)
 {
   return id.getElementsByTagName(o);
 }
-window.onload = function()
-{
-  id('tel').onkeyup = function()
-  {
-    mascara(this, mtel);
-  }
-  id('cpf').onkeyup = function()
-  {
-    mascara(this, mcpf);
-  }
-  id('cep').onkeyup = function()
-  {
-    mascara(this, mcep);
-  }
-  id('numero').onkeyup = function()
-  {
-    mascara(this, mnum);
-  }
-}
 
 function inputs(input, select, textarea)
 {
@@ -179,14 +160,17 @@ function disableInputs()
   }
 }
 
-id('form').onsubmit = function()
-{
-  var input = tag(this, 'input'),
-  select = tag(this, 'select'),
-  textarea = tag(this, 'textarea');
-  inputs(input, select, textarea);
-  return false
+if(id('form')) {
+  id('form').onsubmit = function()
+  {
+    var input = tag(this, 'input'),
+    select = tag(this, 'select'),
+    textarea = tag(this, 'textarea');
+    inputs(input, select, textarea);
+    return false
+  }
 }
+
 focusinput = document.querySelectorAll('input, textarea, select');
 for (i = 0; i < focusinput.length; i++)
 {
